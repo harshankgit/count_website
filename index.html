@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+
+            background-color: rgb(14, 49, 112);
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .box {
+            margin: auto;
+            border: 8px dotted red;
+            border-radius: 50%;
+            width: max-content;
+            background: black;
+            padding: 50px;
+            color: beige;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        input {
+            width: 40px;
+            height: 40px;
+            border-radius: 30px;
+            text-align: center;
+            margin: 10px;
+            border: 2px double red;
+            cursor: all-scroll;
+            padding: 1px;
+        }
+
+        label {
+            text-transform: capitalize;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        h1:hover {
+            cursor: pointer;
+            color: brown;
+
+        }
+
+      
+    </style>
+</head>
+
+<body>
+    <h1 id="header">welcome to my wesite </h1>
+    <div class="container">
+        <div class="box">
+            <h1>we are coming soon</h1>
+            <h2 id="time"> </h2>
+            <div class="small">
+                <input type="text" value="0" readonly>
+                <label for="">Days</label>
+                <input type="text" value="0" readonly>
+                <label for="">hours</label>
+                <input type="text" value="0" readonly>
+                <label for="">minutes</label>
+                <input type="text" value="0" readonly>
+                <label for="">seconds</label>
+            </div>
+        </div>
+    </div>
+    <script>
+        let enddate = "28 feb 2024 9:00 pm"
+        document.getElementById("time").innerText = enddate;
+
+        function Clock() {
+            let input = document.querySelectorAll("input");
+            let end = new Date(enddate);
+            let now = new Date()
+            let diff = (end - now) / 1000;
+            if (diff < 0) {
+                return;
+
+            }
+            input[0].value = Math.floor(diff / 3600 / 24);
+            input[1].value = Math.floor(diff / 3600) % 24;
+            input[2].value = Math.floor(diff / 60) % 26;
+            input[3].value = Math.floor(diff) % 60;
+        }
+        Clock();
+        setInterval(() => {
+            Clock()
+        }, 1000)
+    </script>
+</body>
+
+</html>
